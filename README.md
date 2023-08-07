@@ -1,36 +1,38 @@
-# NestJS - Assignment
-## Task Management System
-### Description
+# Task Management System | NestJS - Assignment
+## Description
 This is a simple Task Management System built using NestJS. It provides endpoints to perform CRUD operations on tasks. The tasks are managed in-memory, meaning they won't persist between application restarts.
 
-#### Setup
+### Setup
 Clone the repository:
 ```git clone https://github.com/Anas17Ahmed/task-management-system-sl-nestjs-assignment.git```
 cd NestJS-Assignment
 Install dependencies:
 ```npm install```
 
-#### Starting the Application
+### Starting the Application
 To start the NestJS application in development mode, run:
 ```npm run start:dev```
 The application will be available at http://localhost:3000.
 
-#### API Endpoints
+### API Endpoints
 
-##### Create a Task
+#### Create a Task
 Method: POST
 Endpoint: /tasks
+
 Body:
-json
-```{
+```
+{
   "title": "Sample Task",
   "description": "This is a sample task.",
   "status": "In Progress",
   "dueDate": "2023-08-15"
-}```
+}
+```
+
 Response:
-json
-```{
+```
+{
   "id": 1,
   "title": "Sample Task",
   "description": "This is a sample task.",
@@ -38,13 +40,14 @@ json
   "dueDate": "2023-08-15",
   "createdAt": "2023-08-07T15:00:00.000Z",
   "updatedAt": "2023-08-07T15:00:00.000Z"
-}```
+}
+```
 
-##### Get All Tasks
+#### Get All Tasks
 Method: GET
 Endpoint: /tasks
+
 Response:
-json
 ```
 [
   {
@@ -65,14 +68,16 @@ json
     "createdAt": "2023-08-07T16:00:00.000Z",
     "updatedAt": "2023-08-07T16:00:00.000Z"
   }
-]```
+]
+```
 
-##### Get Task by ID
+#### Get Task by ID
 Method: GET
 Endpoint: /tasks/1
+
 Response:
-json
-```{
+```
+{
   "id": 1,
   "title": "Sample Task",
   "description": "This is a sample task.",
@@ -80,19 +85,22 @@ json
   "dueDate": "2023-08-15",
   "createdAt": "2023-08-07T15:00:00.000Z",
   "updatedAt": "2023-08-07T15:00:00.000Z"
-}```
+}
+```
 
-##### Update a Task
+#### Update a Task
 Method: PUT
 Endpoint: /tasks/1
 Body:
-json
-```{
+```
+{
   "status": "Completed"
-}```
+}
+```
+
 Response:
-json
-```{
+```
+{
   "id": 1,
   "title": "Sample Task",
   "description": "This is a sample task.",
@@ -100,11 +108,14 @@ json
   "dueDate": "2023-08-15",
   "createdAt": "2023-08-07T15:00:00.000Z",
   "updatedAt": "2023-08-07T17:00:00.000Z"
-}```
+}
+```
 
-##### Delete a Task
+#### Delete a Task
 Method: DELETE
 Endpoint: /tasks/1
+
 Response:
-json
-```{}```
+```
+{}
+```
