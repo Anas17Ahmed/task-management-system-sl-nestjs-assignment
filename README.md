@@ -4,15 +4,19 @@ This is a simple Task Management System built using NestJS. It provides endpoint
 
 ### Setup
 Clone the repository:
-```git clone https://github.com/Anas17Ahmed/task-management-system-sl-nestjs-assignment.git```
-cd NestJS-Assignment
+`git clone https://github.com/Anas17Ahmed/task-management-system-sl-nestjs-assignment.git`
+
+Change directory
+`cd task-management-system-sl-nestjs-assignment`
+
 Install dependencies:
-```npm install```
+`npm install`
 
 ### Starting the Application
 To start the NestJS application in development mode, run:
-```npm run start:dev```
-The application will be available at http://localhost:3000.
+`npm run start:dev`
+
+The application will be available at `http://localhost:3000`.
 
 ### API Endpoints
 
