@@ -1,21 +1,25 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 @Entity()
-export class Task {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  title: string;
+  firstName: string;
 
   @Column()
-  description: string;
+  lastName: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column({ unique: true })
+  username: string;
 
   @Column()
-  status: string;
-
-  @Column()
-  dueDate: Date;
+  password: string;
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

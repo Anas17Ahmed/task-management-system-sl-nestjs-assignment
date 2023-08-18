@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Task } from './task.entity';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class TaskService {
-  private tasks: Task[] = []; // In-memory data stored as an array of tasks
+  private tasks: Task[] = [];
 
   constructor(
     @InjectRepository(Task)
@@ -16,13 +17,13 @@ export class TaskService {
     return this.tasks;
   }
 
-  async findOne(id: number): Promise<Task | undefined> {
+  async findOne(id: string): Promise<Task | undefined> {
     return this.tasks.find((task) => task.id === id);
   }
 
   async create(taskData: Partial<Task>): Promise<Task> {
     const newTask: Task = {
-      id: this.tasks.length > 0 ? this.tasks[this.tasks.length - 1].id + 1 : 1,
+      id: uuid(),
       title: '', // Provide default values for required properties
       description: '',
       status: '',
@@ -35,7 +36,7 @@ export class TaskService {
     return newTask;
   }
 
-  async update(id: number, taskData: Partial<Task>): Promise<Task | undefined> {
+  async update(id: string, taskData: Partial<Task>): Promise<Task | undefined> {
     const taskIndex = this.tasks.findIndex((task) => task.id === id);
     if (taskIndex >= 0) {
       const updatedTask = { ...this.tasks[taskIndex], ...taskData, updatedAt: new Date() };
@@ -45,7 +46,32 @@ export class TaskService {
     return undefined; // Task with the given ID not found
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
+
+  async findTasksByCriteria(
+    status?: string,
+    dueDate?: Date,
+    startDate?: Date,
+    endDate?: Date,
+  ): Promise<Task[]> {
+    let filteredTasks = this.tasks;
+
+    if (status) {
+      filteredTasks = filteredTasks.filter((task) => task.status === status);
+    }
+
+    if (dueDate) {
+      filteredTasks = filteredTasks.filter((task) => task.dueDate === dueDate);
+    }
+
+    if (startDate && endDate) {
+      filteredTasks = filteredTasks.filter(
+        (task) => task.dueDate >= startDate && task.dueDate <= endDate,
+      );
+    }
+
+    return filteredTasks;
   }
 }
